@@ -17,6 +17,7 @@ from forms import *
 from flask_migrate import Migrate
 #1026
 import datetime
+from sqlalchemy.sql import func
 
 #----------------------------------------------------------------------------#
 # App Config.
@@ -92,7 +93,7 @@ class Show(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     venue_id = db.Column(db.Integer, db.ForeignKey('venue.id'), nullable=False)
     artist_id = db.Column(db.Integer, db.ForeignKey('artist.id'), nullable=False)
-    start_time = db.Column(db.DateTime, default=datetime.datetime.utcnow)
+    start_time = db.Column(db.DateTime, server_default=func.now())
 
 #1026 이거 안해줘도 되는게 migrate라고 안했었나.. 근데 명시적으로 해줘야겠다 일단은.. 알아서 table 못만드니깐
 db.create_all()
