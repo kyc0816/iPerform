@@ -10,4 +10,8 @@ DEBUG = True
 
 
 # TODO IMPLEMENT DATABASE URL
-SQLALCHEMY_DATABASE_URI = '<Put your local database url>'
+# 1025 created db and put it into config, which will be called as 
+# app.config.from_object('config')
+# at app.py
+SQLALCHEMY_DATABASE_URI = 'postgres://postgres:1111@localhost:5432/db_fyyur'
+SQLALCHEMY_TRACK_MODIFICATIONS = False

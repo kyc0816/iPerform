@@ -12,6 +12,10 @@ import logging
 from logging import Formatter, FileHandler
 from flask_wtf import Form
 from forms import *
+
+#1023 첫삽 - flask_migrate에서 Migrate import하기 (1026 돼서야 성공)
+from flask_migrate import Migrate
+
 #----------------------------------------------------------------------------#
 # App Config.
 #----------------------------------------------------------------------------#
@@ -21,7 +25,9 @@ moment = Moment(app)
 app.config.from_object('config')
 db = SQLAlchemy(app)
 
-# TODO: connect to a local postgresql database
+#1023 첫삽 - migrate 개체 생성
+migrate = Migrate(app, db)
+# TODO: connect to a local postgresql database (done)
 
 #----------------------------------------------------------------------------#
 # Models.
