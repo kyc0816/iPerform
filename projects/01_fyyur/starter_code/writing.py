@@ -11,7 +11,7 @@ class Venue(db.Model):
     image_link = db.Column(db.String(500))
     facebook_link = db.Column(db.String(120))
     website = db.Column(db.String(120))
-    seeking_talent = db.Column(db.Boolean())
+    seeking_talent = db.Column(db.Boolean) # 찾아봤는데 Boolean 뒤에 괄호 안붙는다.
     seeking_description = db.Column(db.String(500))
     # num_upcoming_shows = db.Column(db.Integer)
     # (db에 넣는게아니라 함수적으로 구현인듯)
@@ -43,7 +43,7 @@ class Show(db.Model):
     __tablename__ = 'Show'
 
     # show 자체는 id 없어도 되나
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True) #없으니 오류 나는 듯
     # name = db.Column(db.String)
     # city = db.Column(db.String(120))
     # state = db.Column(db.String(120))

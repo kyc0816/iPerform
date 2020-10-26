@@ -33,6 +33,9 @@ migrate = Migrate(app, db)
 # Models.
 #----------------------------------------------------------------------------#
 
+# 1026 Models 좀 수정하고 Show 넣어주고나서.. 어차피 지금 mock data로 돌아가니까
+# 이거 migrate해줘도 앱 돌아가는 것에 문제 없을 것이다.
+
 class Venue(db.Model):
     __tablename__ = 'Venue'
 
@@ -44,6 +47,11 @@ class Venue(db.Model):
     phone = db.Column(db.String(120))
     image_link = db.Column(db.String(500))
     facebook_link = db.Column(db.String(120))
+    #1026 added
+    genres = db.Column(db.String(120))
+    website = db.Column(db.String(120))
+    seeking_talent = db.Column(db.Boolean)
+    seeking_description = db.Column(db.String(500))
 
     # TODO: implement any missing fields, as a database migration using Flask-Migrate
 
@@ -58,10 +66,23 @@ class Artist(db.Model):
     genres = db.Column(db.String(120))
     image_link = db.Column(db.String(500))
     facebook_link = db.Column(db.String(120))
+    #1026 added
+    website = db.Column(db.String(120))
+    seeking_venue = db.Column(db.Boolean())
+    seeking_description = db.Column(db.String(500))
 
     # TODO: implement any missing fields, as a database migration using Flask-Migrate
 
 # TODO Implement Show and Artist models, and complete all model relationships and properties, as a database migration.
+
+#1026 added
+class Show(db.Model):
+    __tablename__ = 'Show'
+
+    id = db.Column(db.Integer, primary_key=True)
+    venue_id = db.Column(db.Integer, db.foreign_key('Venue.id'), nullable=False)
+    artist_id = db.Column(db.Integer, db.foreign_key('Artist.id'), nullable=False)
+    start_time = db.Column(db.datatime)
 
 #----------------------------------------------------------------------------#
 # Filters.
