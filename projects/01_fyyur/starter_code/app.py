@@ -53,7 +53,7 @@ class Venue(db.Model):
     seeking_talent = db.Column(db.Boolean)
     seeking_description = db.Column(db.String(500))
 
-    #1026 python -i에서는 query.all() 돌아가는데 psql에서는 select * from이 안먹혀서 db에 생성된건지 아닌지 몰겠음..
+    #1026 python -i에서는 query.all() 돌아가는데 psql에서는 select * from이 안먹혀서 db에 생성된건지 아닌지 몰겠음..(해결됨). 대문자라 안됐었음
     def __repr__(self):
         return f'<Venue ID: {self.id}, Venue Name: {self.name}, Venue Address: {self.address}>'
 
@@ -74,6 +74,10 @@ class Artist(db.Model):
     website = db.Column(db.String(120))
     seeking_venue = db.Column(db.Boolean)
     seeking_description = db.Column(db.String(500))
+
+    #1026 이제 내 손아귀에 있다 ㅋ
+    def __repr__(self):
+        return f'<Artist ID: {self.id}, Artist Name: {self.name}, Artist seeking_description: {self.seeking_description}>'
 
     # TODO: implement any missing fields, as a database migration using Flask-Migrate
 
