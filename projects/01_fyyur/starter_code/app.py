@@ -68,7 +68,7 @@ class Artist(db.Model):
     facebook_link = db.Column(db.String(120))
     #1026 added
     website = db.Column(db.String(120))
-    seeking_venue = db.Column(db.Boolean())
+    seeking_venue = db.Column(db.Boolean)
     seeking_description = db.Column(db.String(500))
 
     # TODO: implement any missing fields, as a database migration using Flask-Migrate
@@ -80,9 +80,9 @@ class Show(db.Model):
     __tablename__ = 'Show'
 
     id = db.Column(db.Integer, primary_key=True)
-    venue_id = db.Column(db.Integer, db.foreign_key('Venue.id'), nullable=False)
-    artist_id = db.Column(db.Integer, db.foreign_key('Artist.id'), nullable=False)
-    start_time = db.Column(db.datatime)
+    venue_id = db.Column(db.Integer, db.ForeignKey('Venue.id'), nullable=False)
+    artist_id = db.Column(db.Integer, db.ForeignKey('Artist.id'), nullable=False)
+    start_time = db.Column(db.DateTime)
 
 #----------------------------------------------------------------------------#
 # Filters.
