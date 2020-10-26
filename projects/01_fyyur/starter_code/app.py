@@ -37,7 +37,7 @@ migrate = Migrate(app, db)
 # 이거 migrate해줘도 앱 돌아가는 것에 문제 없을 것이다.
 
 class Venue(db.Model):
-    __tablename__ = 'Venue'
+    __tablename__ = 'venue'
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String)
@@ -60,7 +60,7 @@ class Venue(db.Model):
     # TODO: implement any missing fields, as a database migration using Flask-Migrate
 
 class Artist(db.Model):
-    __tablename__ = 'Artist'
+    __tablename__ = 'artist'
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String)
@@ -81,12 +81,15 @@ class Artist(db.Model):
 
 #1026 added
 class Show(db.Model):
-    __tablename__ = 'Show'
+    __tablename__ = 'show'
 
     id = db.Column(db.Integer, primary_key=True)
-    venue_id = db.Column(db.Integer, db.ForeignKey('Venue.id'), nullable=False)
-    artist_id = db.Column(db.Integer, db.ForeignKey('Artist.id'), nullable=False)
+    venue_id = db.Column(db.Integer, db.ForeignKey('venue.id'), nullable=False)
+    artist_id = db.Column(db.Integer, db.ForeignKey('artist.id'), nullable=False)
     start_time = db.Column(db.DateTime)
+
+#1026 이거 안해줘도 되는게 migrate라고 안했었나.. 근데 명시적으로 해줘야겠다 일단은.. 알아서 table 못만드니깐
+db.create_all()
 
 #----------------------------------------------------------------------------#
 # Filters.
